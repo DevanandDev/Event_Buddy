@@ -17,7 +17,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title:text(text: 'Event Buddy',fontSize: 20,fontweights: FontWeight.bold), 
+          title: text(
+            text: 'Event Buddy',
+            fontSize: 20,
+            fontweights: FontWeight.bold,
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -40,12 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onChanged: (value) {
-                
-                  print('Search: $value');
-                },
               ),
-
             ],
           ),
         ),
