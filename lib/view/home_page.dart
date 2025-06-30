@@ -1,3 +1,4 @@
+import 'package:event_buddy/view/login_page.dart';
 import 'package:event_buddy/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,10 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (ctx) => LoginScreen()),
+                );
               },
               icon: const Icon(Icons.logout),
             ),

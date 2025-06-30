@@ -12,8 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TextEditingController emailController = TextEditingController();
     // TextEditingController passwordController = TextEditingController();
-    final controller = Provider.of<AuthProvider>(context,listen: false);
-    
+    final controller = Provider.of<AuthProvider>(context, listen: false);
 
     final form = GlobalKey<FormState>();
     return Scaffold(
@@ -112,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           if (form.currentState!.validate()) {
-                           controller.loginProvider(context);
+                            controller.loginProvider(context);
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (ctx) => MyHomePage()),

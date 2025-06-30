@@ -31,11 +31,11 @@ class AuthProvider extends ChangeNotifier {
         mobile: regPhoneController.text.trim(),
         password: regPassController.text.trim(),
       );
-    }  catch (e) {
+    } catch (e) {
       throw Exception('already taken :${e}');
     }
-    
   }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -46,5 +46,4 @@ class AuthProvider extends ChangeNotifier {
     regNameController.dispose();
     super.dispose();
   }
-  
 }

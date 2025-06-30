@@ -11,8 +11,6 @@ class AuthService {
     required String email,
     required String password,
     required String mobile,
-    
-    
   }) async {
     try {
       UserCredential userData = await FirebaseAuth.instance
@@ -30,17 +28,16 @@ class AuthService {
       throw e.message ?? 'no data';
     }
   }
-    Future<User?> loginUser({
-      required String email,
-      required String password,
-    }) async {
-      try {
-      final UserCredential userData=await  FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        return userData.user;
-      } on FirebaseAuthException catch (e) {
+
+  Future<User?> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final UserCredential userData = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return userData.user;
+    } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'invalid-email':
           throw 'The email address is badly formatted.';
@@ -56,6 +53,5 @@ class AuthService {
     } catch (e) {
       throw 'An unexpected error occure, pleace try again';
     }
-    }
-  
+  }
 }
