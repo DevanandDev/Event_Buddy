@@ -18,6 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: text(
             text: 'Event Buddy',
             fontSize: 20,
