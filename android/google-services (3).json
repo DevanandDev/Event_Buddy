@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270547476938",
+    "project_id": "eventbuddy-86f9b",
+    "storage_bucket": "eventbuddy-86f9b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270547476938:android:36c3e619eaa0aa05f3ef33",
+        "android_client_info": {
+          "package_name": "com.example.event_buddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLPnixaJ60GQGOmuT6PNjbr8Iqv_ma8Mw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
