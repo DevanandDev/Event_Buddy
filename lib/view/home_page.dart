@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
 
                     return GridView.builder(
-                      itemCount: value.eventDatas.length,
+                      itemCount: value.filterEvent.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         childAspectRatio: 0.75,
                       ),
                       itemBuilder: (context, index) {
-                        final event = value.eventDatas[index];
+                        final event = value.filterEvent[index];
                         return Card(
                           elevation: 4,
                           shape: RoundedRectangleBorder(
