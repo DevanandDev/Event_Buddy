@@ -1,4 +1,4 @@
-import 'package:event_buddy/model/auth_service.dart';
+import 'package:event_buddy/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {

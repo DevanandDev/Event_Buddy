@@ -1,7 +1,9 @@
 import 'package:event_buddy/view/login_page.dart';
+import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
 import 'package:event_buddy/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -15,6 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<EventFetchProvider>(context,listen: false);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -50,6 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+              ),
+
+              Column(
+                children: [
+                  GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (context, index) {
+
+                    },
+                  ),
+                ],
               ),
             ],
           ),
