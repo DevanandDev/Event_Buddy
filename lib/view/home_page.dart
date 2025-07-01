@@ -18,7 +18,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    // Fetch events on load
     Future.microtask(() =>
         Provider.of<EventFetchProvider>(context, listen: false).fetchProvider());
   }
