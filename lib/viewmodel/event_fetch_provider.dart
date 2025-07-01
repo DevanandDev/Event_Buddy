@@ -16,6 +16,7 @@ class EventFetchProvider extends ChangeNotifier {
     notifyListeners();
     try {
       eventDatas = await service.fetchData();
+      filterEvent = eventDatas;
       log('fetched');
     } catch (e) {
       throw Exception(e.toString());

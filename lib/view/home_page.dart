@@ -53,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               TextField(
                 controller: searchController,
+                 onChanged: (value) {
+                   Provider.of<EventFetchProvider>(context,listen: false).search(value);
+                },
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   prefixIcon: const Icon(Icons.search),
