@@ -83,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisCount: 2,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
-                        childAspectRatio: 0.75,
                       ),
                       itemBuilder: (context, index) {
                         final event = value.filterEvent[index];
