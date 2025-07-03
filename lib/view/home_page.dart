@@ -1,7 +1,7 @@
 import 'package:event_buddy/constants/text_constants.dart';
 import 'package:event_buddy/view/login_page.dart';
 import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
-import 'package:event_buddy/widgets/widgets.dart';
+import 'package:event_buddy/widgets/auth_widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

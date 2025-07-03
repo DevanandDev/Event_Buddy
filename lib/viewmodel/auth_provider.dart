@@ -1,4 +1,5 @@
 import 'package:event_buddy/services/auth_service.dart';
+import 'package:event_buddy/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -33,6 +34,23 @@ class AuthProvider extends ChangeNotifier {
       );
     } catch (e) {
       throw Exception('already taken :${e}');
+    }
+  }
+
+  Future<void> googleProvider(BuildContext context) async {
+    try {
+      final googleData = await service.loginGoogle();
+      if (googleData != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: text(text: 'Google Sign-In Successfull')),
+        );
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: text(text: 'Google Sign-in Failed')));
+      }
+    } catch (e) {
+      throw 'Failed Sign-In : $e';
     }
   }
 

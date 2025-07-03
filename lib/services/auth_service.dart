@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final auth = FirebaseAuth.instance;
@@ -52,6 +53,20 @@ class AuthService {
       }
     } catch (e) {
       throw 'An unexpected error occure, pleace try again';
+    }
+  }
+
+  Future<UserCredential?> loginGoogle() async {
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      final googleAuth = await googleUser?.authentication;
+      final cred = await GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      return await auth.signInWithCredential(cred);
+    } catch (e) {
+      throw 'Sign-In failed : Try again';
     }
   }
 }

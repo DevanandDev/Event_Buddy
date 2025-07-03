@@ -14,7 +14,7 @@ class TextConstants {
   static const String userCondition = 'Username';
   static const String mobile = "Mobile";
   static const String mobileCheck = 'Please enter your mobile number';
-  static const String alreadyAC = "Already have an account ";
+  static const String alreadyAC = "Already have an account! ";
   static const String appName =  'Event Buddy';
   static const String search = 'Search...';
   static const String noEvent = "No events found";
