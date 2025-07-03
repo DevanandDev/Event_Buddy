@@ -1,4 +1,3 @@
-import 'package:event_buddy/models/event_model.dart';
 import 'package:event_buddy/view/login_page.dart';
 import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
 import 'package:event_buddy/widgets/widgets.dart';
