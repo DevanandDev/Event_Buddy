@@ -1,3 +1,5 @@
+import 'package:event_buddy/constants/color_const.dart';
+import 'package:event_buddy/constants/text_constants.dart';
 import 'package:event_buddy/view/home_page.dart';
 import 'package:event_buddy/viewmodel/auth_provider.dart';
 import 'package:event_buddy/widgets/widgets.dart';
@@ -9,7 +11,7 @@ class MyRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final regController = Provider.of<AuthProvider>(context,listen: false);
+    final regController = Provider.of<AuthProvider>(context, listen: false);
     final form = GlobalKey<FormState>();
 
     return Scaffold(
@@ -21,7 +23,7 @@ class MyRegister extends StatelessWidget {
             left: 190,
             child: CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.deepPurple.shade300,
+              backgroundColor: ColorConsts.purple,
             ),
           ),
           Positioned(
@@ -29,7 +31,7 @@ class MyRegister extends StatelessWidget {
             right: -110,
             child: CircleAvatar(
               radius: 130,
-              backgroundColor: Colors.deepPurple.shade200,
+              backgroundColor: ColorConsts.lightPurple,
             ),
           ),
           Positioned(
@@ -37,7 +39,7 @@ class MyRegister extends StatelessWidget {
             left: -30,
             child: CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.deepPurple.shade300,
+              backgroundColor:ColorConsts.purple,
             ),
           ),
           Positioned(
@@ -45,7 +47,7 @@ class MyRegister extends StatelessWidget {
             left: 80,
             child: CircleAvatar(
               radius: 15,
-              backgroundColor: Colors.deepPurple.shade200,
+              backgroundColor: ColorConsts.lightPurple,
             ),
           ),
           Center(
@@ -58,7 +60,7 @@ class MyRegister extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20),
                     const Text(
-                      "Register",
+                      TextConstants.register,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
@@ -67,7 +69,7 @@ class MyRegister extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     const Text(
-                      "Register your details here",
+                      TextConstants.regTheme,
                       style: TextStyle(
                         fontSize: 14,
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -77,24 +79,24 @@ class MyRegister extends StatelessWidget {
                     textForm(
                       acontroller: regController.regNameController,
                       prefix: Icon(Icons.person),
-                      hText: "Username",
-                       validate: (value) {
+                      hText: TextConstants.username,
+                      validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your name';
+                          return TextConstants.userCondition;
                         }
-                       }
+                      },
                     ),
                     SizedBox(height: 10),
                     textForm(
                       acontroller: regController.regEmailController,
                       prefix: Icon(Icons.email),
-                      hText: "Email",
-                        validate: (value) {
+                      hText: TextConstants.email,
+                      validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your email';
+                          return TextConstants.emailTheme;
                         }
                         if (!value.contains('@')) {
-                          return 'email is not correct';
+                          return TextConstants.emailError;
                         }
                       },
                     ),
@@ -102,26 +104,26 @@ class MyRegister extends StatelessWidget {
                     textForm(
                       acontroller: regController.regPassController,
                       prefix: Icon(Icons.lock_outline),
-                      hText: "Password",
-                       validate: (value) {
-                       if (value==null || value.isEmpty) {
-                        return 'please enter your password';
-                      }
-                      if (value.length < 6) {
-                        return 'enter atleast 6 characters';
-                      }
-                    },
+                      hText: TextConstants.password,
+                      validate: (value) {
+                        if (value == null || value.isEmpty) {
+                          return TextConstants.passwordTheme;
+                        }
+                        if (value.length < 6) {
+                          return TextConstants.passwordCondition;
+                        }
+                      },
                     ),
                     SizedBox(height: 10),
                     textForm(
                       acontroller: regController.regPhoneController,
                       prefix: Icon(Icons.phone_android),
-                      hText: "Mobile",
-                       validate: (value) {
+                      hText: TextConstants.mobile,
+                      validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your mobile number';
+                          return TextConstants.mobileCheck;
                         }
-                       }
+                      },
                     ),
                     SizedBox(height: 40),
                     SizedBox(
@@ -131,20 +133,23 @@ class MyRegister extends StatelessWidget {
                         onPressed: () {
                           if (form.currentState!.validate()) {
                             regController.registerProvider();
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=> MyHomePage()));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (ctx) => MyHomePage()),
+                            );
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
+                          backgroundColor: ColorConsts.deepPurple,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          shadowColor: Colors.deepPurple.shade200,
+                          shadowColor: ColorConsts.lightPurple,
                           elevation: 5,
                         ),
                         child: const Text(
-                          "Register",
-                          style: TextStyle(fontSize: 16,color: Colors.white),
+                          TextConstants.register,
+                          style: TextStyle(fontSize: 16, color: ColorConsts.white),
                         ),
                       ),
                     ),
@@ -152,15 +157,15 @@ class MyRegister extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Already have an account "),
+                        const Text(TextConstants.alreadyAC),
                         GestureDetector(
                           onTap: () {
                             Navigator.pop(context);
                           },
                           child: const Text(
-                            "Register",
+                            TextConstants.register,
                             style: TextStyle(
-                              color: Colors.deepPurple,
+                              color: ColorConsts.deepPurple,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

@@ -16,7 +16,9 @@ class FetchEventsService {
       }).toList();
     } catch (e) {
      print('Error fetching events: $e');
-      return [];
+      return [
+        
+      ];
     }
   }
 }

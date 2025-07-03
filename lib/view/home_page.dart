@@ -1,3 +1,4 @@
+import 'package:event_buddy/constants/text_constants.dart';
 import 'package:event_buddy/view/login_page.dart';
 import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
 import 'package:event_buddy/widgets/widgets.dart';
@@ -18,10 +19,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<EventFetchProvider>(context, listen: false).fetchProvider());
+    Future.microtask(
+      () =>
+          Provider.of<EventFetchProvider>(
+            context,
+            listen: false,
+          ).fetchProvider(),
+    );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: text(
-            text: 'Event Buddy',
+            text: TextConstants.appName,
             fontSize: 20,
             fontweights: FontWeight.bold,
           ),
@@ -52,11 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               TextField(
                 controller: searchController,
-                 onChanged: (value) {
-                   Provider.of<EventFetchProvider>(context,listen: false).search(value);
+                onChanged: (value) {
+                  Provider.of<EventFetchProvider>(
+                    context,
+                    listen: false,
+                  ).search(value);
                 },
                 decoration: InputDecoration(
-                  hintText: 'Search...',
+                  hintText: TextConstants.search,
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -72,17 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
 
                     if (value.eventDatas.isEmpty) {
-                      return const Center(child: Text("No events found"));
+                      return const Center(child: Text(TextConstants.noEvent));
                     }
 
                     return GridView.builder(
                       itemCount: value.filterEvent.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                          ),
                       itemBuilder: (context, index) {
                         final event = value.filterEvent[index];
                         return Card(
@@ -96,7 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               Expanded(
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(12)),
+                                    top: Radius.circular(12),
+                                  ),
                                   child: Image.network(
                                     event.image,
                                     width: double.infinity,

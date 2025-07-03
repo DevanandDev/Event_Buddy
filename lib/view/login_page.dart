@@ -1,3 +1,5 @@
+import 'package:event_buddy/constants/color_const.dart';
+import 'package:event_buddy/constants/text_constants.dart';
 import 'package:event_buddy/view/home_page.dart';
 import 'package:event_buddy/view/register_page.dart';
 import 'package:event_buddy/viewmodel/auth_provider.dart';
@@ -22,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             left: 190,
             child: CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.deepPurple.shade300,
+              backgroundColor: ColorConsts.purple,
             ),
           ),
           Positioned(
@@ -30,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             right: -110,
             child: CircleAvatar(
               radius: 130,
-              backgroundColor: Colors.deepPurple.shade200,
+              backgroundColor: ColorConsts.lightPurple,
             ),
           ),
           Positioned(
@@ -38,7 +40,7 @@ class LoginScreen extends StatelessWidget {
             left: -30,
             child: CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.deepPurple.shade300,
+              backgroundColor: ColorConsts.purple,
             ),
           ),
           Positioned(
@@ -46,7 +48,7 @@ class LoginScreen extends StatelessWidget {
             left: 80,
             child: CircleAvatar(
               radius: 15,
-              backgroundColor: Colors.deepPurple.shade200,
+              backgroundColor: ColorConsts.lightPurple,
             ),
           ),
           Center(
@@ -59,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20),
                     const Text(
-                      "Login",
+                      TextConstants.login,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w600,
@@ -68,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     const Text(
-                      "Please sign in to continue",
+                      TextConstants.logTheme,
                       style: TextStyle(
                         fontSize: 14,
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -78,13 +80,13 @@ class LoginScreen extends StatelessWidget {
                     textForm(
                       acontroller: controller.emailController,
                       prefix: Icon(Icons.email),
-                      hText: "Email",
+                      hText: TextConstants.email,
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your email';
+                          return TextConstants.emailTheme;
                         }
                         if (!value.contains('@')) {
-                          return 'email is not correct';
+                          return TextConstants.emailError;
                         }
                       },
                     ),
@@ -92,13 +94,13 @@ class LoginScreen extends StatelessWidget {
                     textForm(
                       acontroller: controller.passController,
                       prefix: Icon(Icons.lock_outline_sharp),
-                      hText: "Password",
+                      hText: TextConstants.password,
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your password';
+                          return TextConstants.passwordTheme;
                         }
                         if (value.length < 6) {
-                          return 'enter atleast 6 characters';
+                          return TextConstants.passwordCondition;
                         }
                       },
                     ),
@@ -117,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
+                          backgroundColor: ColorConsts.deepPurple,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -125,8 +127,8 @@ class LoginScreen extends StatelessWidget {
                           elevation: 5,
                         ),
                         child: Text(
-                          "Login",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          TextConstants.login,
+                          style: TextStyle(fontSize: 16, color: ColorConsts.white),
                         ),
                       ),
                     ),
@@ -134,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don’t have an account? "),
+                        const Text(TextConstants.checkReg),
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -143,9 +145,9 @@ class LoginScreen extends StatelessWidget {
                             );
                           },
                           child: const Text(
-                            "Register",
+                            TextConstants.register,
                             style: TextStyle(
-                              color: Colors.deepPurple,
+                              color: ColorConsts.deepPurple,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
