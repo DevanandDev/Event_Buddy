@@ -33,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
         password: regPassController.text.trim(),
       );
     } catch (e) {
-      throw Exception('already taken :${e}');
+      throw Exception('already taken :${e}'); 
     }
   }
 

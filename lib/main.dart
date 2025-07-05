@@ -1,6 +1,7 @@
 import 'package:event_buddy/firebase_options.dart';
 import 'package:event_buddy/view/splash_screen.dart';
 import 'package:event_buddy/viewmodel/auth_provider.dart';
+import 'package:event_buddy/viewmodel/carousel_provider.dart';
 import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,8 @@ void main() async {
   runApp(
     MultiProvider(providers: [
      ChangeNotifierProvider(create: (context) => AuthProvider()),
-     ChangeNotifierProvider(create: (context) => EventFetchProvider(),)
+     ChangeNotifierProvider(create: (context) => EventFetchProvider(),),
+     ChangeNotifierProvider(create: (context) => CarouselProvider(),)
     ],
     
         

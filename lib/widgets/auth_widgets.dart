@@ -8,6 +8,7 @@ Widget textForm({
   required hText,
   String? Function(String?)? validate,
   maxlines,
+  Function(String)? onChanged
 }) {
   return TextFormField(
     maxLines: maxlines,
@@ -25,6 +26,9 @@ Widget textForm({
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
     ),
     validator: validate,
+    onChanged: (value) {
+      
+    },
   );
 }
 
