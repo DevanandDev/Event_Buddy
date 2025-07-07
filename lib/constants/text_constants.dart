@@ -18,4 +18,8 @@ class TextConstants {
   static const String appName =  'Event Buddy';
   static const String search = 'Search...';
   static const String noEvent = "No events found";
+  static const String fullname = "Full Name";
+  static const String address = "Address";
+  static const String location = "Your Location";
+
 }

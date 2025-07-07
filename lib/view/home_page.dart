@@ -42,11 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
           automaticallyImplyLeading: false,
           title: text(
             text: TextConstants.appName,
+            colors: ColorConsts.deepPurple,
             fontSize: 20,
             fontweights: FontWeight.bold,
           ),
           actions: [
             IconButton(
+              color: ColorConsts.purple,
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
@@ -59,31 +61,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Column(
             children: [
-              // TextField(
-              //   controller: searchController,
-              //   onChanged: (value) {
-              //     Provider.of<EventFetchProvider>(
-              //       context,
-              //       listen: false,
-              //     ).search(value);
-              //   },
-              //   decoration: InputDecoration(
-              //     hintText: TextConstants.search,
-              //     prefixIcon: const Icon(Icons.search),
-              //     border: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //   ),
-              // ),
-              textForm(
-                acontroller: searchController,
-                prefix: const Icon(Icons.search),
-                hText: TextConstants.search,
-                onChanged: (p0) {
-                  context.read<EventFetchProvider>().search(p0);
+              TextField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  hintText: TextConstants.search,
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: (value) {
+                  context.read<EventFetchProvider>().search(value);
                 },
               ),
               const SizedBox(height: 22),
@@ -132,8 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: BoxDecoration(
                           color:
                               value.index == index
-                                  ? ColorConsts.deepPurple
-                                  : ColorConsts.purple,
+                                  ? ColorConsts.purple
+                                  : ColorConsts.lightPurple,
                           shape: BoxShape.circle,
                         ),
                       );
@@ -146,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.only(right: 200),
 
                 child: text(
-                  text: 'Book Your Items',
+                  text: 'Every Moments',
                   fontSize: 20,
                   fontweights: FontWeight.bold,
                 ),

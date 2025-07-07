@@ -8,7 +8,8 @@ Widget textForm({
   required hText,
   String? Function(String?)? validate,
   maxlines,
-  Function(String)? onChanged
+  Function(String)? onChanged,
+  Function()? ontap,
 }) {
   return TextFormField(
     maxLines: maxlines,
@@ -23,12 +24,11 @@ Widget textForm({
       hintText: hText,
       hintStyle: GoogleFonts.poppins(),
       prefixIcon: prefix,
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
     ),
     validator: validate,
-    onChanged: (value) {
-      
-    },
+    onChanged:onChanged,
+    onTap: ontap
   );
 }
 
