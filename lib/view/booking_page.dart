@@ -1,8 +1,9 @@
 import 'package:event_buddy/constants/color_const.dart';
 import 'package:event_buddy/constants/dropdown_list.dart';
 import 'package:event_buddy/constants/text_constants.dart';
-import 'package:event_buddy/models/fetch_event_model.dart';
+import 'package:event_buddy/models/book_event_model.dart';
 import 'package:event_buddy/services/booking_event.dart';
+import 'package:event_buddy/viewmodel/booking_provider.dart';
 import 'package:event_buddy/viewmodel/location_provider.dart';
 import 'package:event_buddy/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
@@ -124,20 +125,46 @@ class MyBooking extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            eButton(
-              text: 'Book Event',
-              presse: (){
-                final bookEvents = BookingEventModel(
-                  name: nameController.text.trim(),
-                  email: emailController.text.trim(),
-                  mobile: phoneController.text.trim(),
-                  location: locationController.text.trim(),
-                  address: adddressController.text.trim(),
-                  date: dateController.text.trim(),
-                  eventType: eTypeController.text.trim(),
-                );
+            Consumer<BookingProvider>(
+              builder: (context, bookingVal, child) {
+                return eButton(
+                  text:
+                      bookingVal.isLoading ? 'Booking Event...' : 'Book Event',
+                  presse: () async {
+                    final myBooking = BookingEventModel(
+                      name: nameController.text.trim(),
+                      email: emailController.text.trim(),
+                      mobile: phoneController.text.trim(),
+                      location: locationController.text.trim(),
+                      address: adddressController.text.trim(),
+                      date: dateController.text.trim(),
+                      eventType: eTypeController.text.trim(),
+                    );
+                    if (myBooking == null) {
+                       ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: text(text: 'Booking Failed')),
+                      );
+                    }
 
-                BookingEventService().bookService(bookEvents);
+                    final success = await bookingVal.bookData(
+                      context,
+                      myBooking,
+                    );
+                    if (success) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: text(text: 'Booking Successfull')),
+                      );
+
+                      nameController.clear();
+                      emailController.clear();
+                      phoneController.clear();
+                      locationController.clear();
+                      adddressController.clear();
+                      dateController.clear();
+                      eTypeController.clear();
+                    }
+                  },
+                );
               },
             ),
           ],

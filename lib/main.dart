@@ -1,6 +1,7 @@
 import 'package:event_buddy/firebase_options.dart';
 import 'package:event_buddy/view/splash_screen.dart';
 import 'package:event_buddy/viewmodel/auth_provider.dart';
+import 'package:event_buddy/viewmodel/booking_provider.dart';
 import 'package:event_buddy/viewmodel/carousel_provider.dart';
 import 'package:event_buddy/viewmodel/dropdown_provider.dart';
 import 'package:event_buddy/viewmodel/event_fetch_provider.dart';
@@ -18,10 +19,10 @@ void main() async {
      ChangeNotifierProvider(create: (context) => EventFetchProvider(),),
      ChangeNotifierProvider(create: (context) => CarouselProvider(),),
      ChangeNotifierProvider(create: (context) => DropdownProvider(),),
-     ChangeNotifierProvider(create: (context) => LocationProvider(),)
+     ChangeNotifierProvider(create: (context) => LocationProvider(),),
+     ChangeNotifierProvider(create: (context) => BookingProvider(),)
     ],
-    
-        
+
        child: MyApp()),
     );
     

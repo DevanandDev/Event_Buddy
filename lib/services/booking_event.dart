@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_buddy/models/fetch_event_model.dart';
+import 'package:event_buddy/models/book_event_model.dart';
 import 'package:logger/logger.dart';
 
 
