@@ -1,9 +1,12 @@
 import 'package:event_buddy/constants/color_const.dart';
 import 'package:event_buddy/constants/dropdown_list.dart';
 import 'package:event_buddy/constants/text_constants.dart';
+import 'package:event_buddy/models/fetch_event_model.dart';
+import 'package:event_buddy/services/booking_event.dart';
 import 'package:event_buddy/viewmodel/location_provider.dart';
 import 'package:event_buddy/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class MyBooking extends StatelessWidget {
@@ -13,12 +16,14 @@ class MyBooking extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController adddressController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController eTypeController = TextEditingController();
 
   List<String> listEvents = DropdownList.eventType;
 
   @override
   Widget build(BuildContext context) {
-    final location = Provider.of<LocationProvider>(context,listen: false);
+    final location = Provider.of<LocationProvider>(context, listen: false);
     if (location.currentAddress != null) {
       locationController.text = location.currentAddress ?? '';
     }
@@ -64,9 +69,9 @@ class MyBooking extends StatelessWidget {
                   acontroller: locationController,
                   prefix: Icon(Icons.location_on, color: ColorConsts.purple),
                   hText: TextConstants.location,
-                  ontap: () async{
-                   await value.fetchLocation();
-                   locationController.text = value.currentAddress ?? '';
+                  ontap: () async {
+                    await value.fetchLocation();
+                    locationController.text = value.currentAddress ?? '';
                   },
                 );
               },
@@ -83,10 +88,58 @@ class MyBooking extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(right: 240),
+              padding: const EdgeInsets.only(right: 260),
               child: text(text: 'Event Details'),
             ),
             SizedBox(height: 20),
+            textForm(
+              acontroller: dateController,
+              prefix: Icon(
+                Icons.calendar_month_outlined,
+                color: ColorConsts.purple,
+              ),
+              hText: TextConstants.calender,
+              ontap: () async {
+                DateTime? pickdate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                );
+                if (pickdate != null) {
+                  String formatedDate = DateFormat(
+                    'dd/MMM/yyyy',
+                  ).format(pickdate);
+                  dateController.text = formatedDate;
+                }
+              },
+            ),
+            SizedBox(height: 10),
+            textForm(
+              hText: 'Event Type',
+              acontroller: eTypeController,
+              prefix: Icon(
+                Icons.event_available_sharp,
+                color: ColorConsts.purple,
+              ),
+            ),
+            SizedBox(height: 20),
+            eButton(
+              text: 'Book Event',
+              presse: (){
+                final bookEvents = BookingEventModel(
+                  name: nameController.text.trim(),
+                  email: emailController.text.trim(),
+                  mobile: phoneController.text.trim(),
+                  location: locationController.text.trim(),
+                  address: adddressController.text.trim(),
+                  date: dateController.text.trim(),
+                  eventType: eTypeController.text.trim(),
+                );
+
+                BookingEventService().bookService(bookEvents);
+              },
+            ),
           ],
         ),
       ),

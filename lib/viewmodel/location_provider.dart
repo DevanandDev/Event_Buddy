@@ -18,7 +18,7 @@ class LocationProvider extends ChangeNotifier {
       }
 
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high, // ✅ use "accuracy" (not deprecated)
+        desiredAccuracy: LocationAccuracy.high,
       );
 
       List<Placemark> placemarks = await placemarkFromCoordinates(
@@ -29,9 +29,9 @@ class LocationProvider extends ChangeNotifier {
       Placemark place = placemarks[0];
 
       _currentAddress =
-          "${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
+          "${place.locality}, ${place.administrativeArea}, ${place.country}";
 
-      notifyListeners(); // ✅ necessary to update UI
+      notifyListeners(); 
     } catch (e) {
       print('Location error: $e');
     }

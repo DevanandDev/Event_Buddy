@@ -1,25 +1,28 @@
+import 'package:event_buddy/constants/color_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget textForm({
-  required acontroller,
-  required prefix,
-  required hText,
+  required TextEditingController acontroller,
+  required Widget prefix,
+  required String hText,
+  int maxlines = 1,
   String? Function(String?)? validate,
-  maxlines,
   Function(String)? onChanged,
-  Function()? ontap,
+  VoidCallback? ontap,
+  bool obscure = false,
 }) {
   return TextFormField(
-    maxLines: maxlines,
     controller: acontroller,
+    obscureText: obscure,
+    maxLines: maxlines,
     decoration: InputDecoration(
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: const Color.fromARGB(111, 163, 157, 157)),
+        borderSide: const BorderSide(color: Color.fromARGB(111, 163, 157, 157)),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: const Color.fromARGB(179, 1, 0, 0)),
+        borderSide: const BorderSide(color: Color.fromARGB(179, 1, 0, 0)),
       ),
       hintText: hText,
       hintStyle: GoogleFonts.poppins(),
@@ -27,17 +30,23 @@ Widget textForm({
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
     ),
     validator: validate,
-    onChanged:onChanged,
-    onTap: ontap
+    onChanged: onChanged,
+    onTap: ontap,
   );
 }
 
-Widget eButton({required String text, required presse}) {
+
+Widget eButton({
+  required String text,
+  required VoidCallback presse,
+  double width = double.infinity,
+  double height = 55,
+}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      minimumSize: Size(400, 55),
-      backgroundColor: Colors.black,
+      minimumSize: Size(width, height),
+      backgroundColor: ColorConsts.deepPurple,
     ),
     onPressed: presse,
     child: Text(

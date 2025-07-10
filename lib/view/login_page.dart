@@ -9,9 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<AuthProvider>(context, listen: false);
@@ -175,16 +180,11 @@ class LoginScreen extends StatelessWidget {
                               color: const Color.fromARGB(255, 192, 191, 191),
                             ),
                           ),
-                          child: Consumer<AuthProvider>(
-                            builder: (context, value, child) {
-                            return IconButton(
-                              onPressed: () async {
-                                value.loginProvider(context);
-                              },
-                              icon: FaIcon(FontAwesomeIcons.google, size: 20),
-                            );
+                          child: IconButton(
+                            onPressed: () async {
+                              auth.loginGoogle();
                             },
-                            
+                            icon: FaIcon(FontAwesomeIcons.google, size: 20),
                           ),
                         ),
                         SizedBox(width: width * 0.1),
@@ -213,7 +213,9 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              auth.guestSign();
+                            },
                             icon: FaIcon(FontAwesomeIcons.user, size: 20),
                           ),
                         ),

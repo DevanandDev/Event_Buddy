@@ -21,5 +21,7 @@ class TextConstants {
   static const String fullname = "Full Name";
   static const String address = "Address";
   static const String location = "Your Location";
+  static const String calender = "Select Your Event Date";
+
 
 }

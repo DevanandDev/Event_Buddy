@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  final auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference userCollection = FirebaseFirestore.instance
       .collection('users');
 
@@ -14,20 +14,24 @@ class AuthService {
     required String mobile,
   }) async {
     try {
-      UserCredential userData = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userData = await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       if (userData.user != null) {
-        userCollection.add({
+        await userCollection.doc(userData.user!.uid).set({
           'name': name,
           'email': email,
           'mobile': mobile,
-          'User_Id': userData.user?.uid,
+          'User_Id': userData.user!.uid,
         });
+        return userData.user;
       }
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'no data';
+      throw e.message ?? 'Something went wrong during registration.';
     }
+    return null;
   }
 
   Future<User?> loginUser({
@@ -35,8 +39,10 @@ class AuthService {
     required String password,
   }) async {
     try {
-      final UserCredential userData = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential userData = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return userData.user;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -51,22 +57,36 @@ class AuthService {
         default:
           throw 'Login failed. Please try again later.';
       }
-    } catch (e) {
-      throw 'An unexpected error occure, pleace try again';
+    } catch (_) {
+      throw 'An unexpected error occurred. Please try again.';
     }
   }
 
   Future<UserCredential?> loginGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
-      final googleAuth = await googleUser?.authentication;
-      final cred = await GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+      if (googleUser == null) {
+        return null;
+      }
+
+      final googleAuth = await googleUser.authentication;
+      final cred = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
       return await auth.signInWithCredential(cred);
-    } catch (e) {
-      throw 'Sign-In failed : Try again';
+    } catch (_) {
+      throw 'Sign-In failed: Try again';
     }
+  }
+
+  Future<User?> guestSign()async{
+  try {
+    UserCredential userGuest = await auth.signInAnonymously();
+    return userGuest.user;
+  } catch (e) {
+    print('Error while enter as a guest : $e');
+    return null;
+  }
   }
 }

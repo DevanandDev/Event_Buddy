@@ -37,23 +37,6 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> googleProvider(BuildContext context) async {
-    try {
-      final googleData = await service.loginGoogle();
-      if (googleData != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: text(text: 'Google Sign-In Successfull')),
-        );
-      } else {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: text(text: 'Google Sign-in Failed')));
-      }
-    } catch (e) {
-      throw 'Failed Sign-In : $e';
-    }
-  }
-
   @override
   void dispose() {
     emailController.dispose();
